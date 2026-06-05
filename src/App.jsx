@@ -24,13 +24,16 @@ export default function App() {
   return (
     <BrowserRouter basename="/Schools">
       <Routes>
-    <Router>
-      {role === 'teacher' ? (
-        <TeacherLayout onLogout={() => setIsAuthenticated(false)} />
-      ) : (
-        <AdminLayout onLogout={() => setIsAuthenticated(false)} />
-      )}
-    </Router>
+   <Route 
+          path="*" 
+          element={
+            role === 'teacher' ? (
+              <TeacherLayout onLogout={() => setIsAuthenticated(false)} />
+            ) : (
+              <AdminLayout onLogout={() => setIsAuthenticated(false)} />
+            )
+          } 
+        />
     </Routes>
     </BrowserRouter>
   );
