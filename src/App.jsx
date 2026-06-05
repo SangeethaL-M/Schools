@@ -23,6 +23,7 @@ export default function App() {
   // 2. Once authenticated, switch the layout framework wrapper cleanly
   return (
     <BrowserRouter basename="/Schools">
+      <Routes>
     <Router>
       {role === 'teacher' ? (
         <TeacherLayout onLogout={() => setIsAuthenticated(false)} />
@@ -30,6 +31,7 @@ export default function App() {
         <AdminLayout onLogout={() => setIsAuthenticated(false)} />
       )}
     </Router>
+    </Routes>
     </BrowserRouter>
   );
 }
