@@ -51,7 +51,9 @@ export default function App() {
   setStudents={setStudents} 
   totalStudents={students.length} />
       ) : (
-        <AdminLayout onLogout={() => setIsAuthenticated(false)} />
+        <AdminLayout onLogout={() => setIsAuthenticated(false)} students={students} 
+  setStudents={setStudents} 
+  totalStudents={1236+students.length}/>
       )}
     </Router>
   );
