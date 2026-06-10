@@ -1,13 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-export default function Dashboard() {
-  // --- 1. Dynamic Interactive Component States ---
-  const [metrics] = useState([
-    { title: 'Total Students', value: '1,250', sub: 'Enrolled this year', change: '+3.5%', color: 'bg-purple-50 text-purple-700' },
+export default function Dashboard({ students, setStudents, totalStudents = 1250 }) {
+  // 1. Keep your local metrics data array HERE as a simple variable, NOT a state!
+  const metrics = [
+    { title: 'Total Students', value: totalStudents.toLocaleString(), sub: 'Enrolled this year', change: '+3.5%', color: 'bg-purple-50 text-purple-700' },
     { title: 'Total Staff', value: '85', sub: 'Active employees', change: '+1.2%', color: 'bg-indigo-50 text-indigo-700' },
     { title: 'Total Classes', value: '48', sub: 'Across all grades', change: '+0.8%', color: 'bg-emerald-50 text-emerald-700' },
     { title: 'Total Revenue', value: '₹152k', sub: 'Collected this term', change: '+5.1%', color: 'bg-blue-50 text-blue-700' },
-  ]);
+  ];
+
 
   const [activities, setActivities] = useState([
     { id: 1, type: 'admission', text: 'Liam Smith admitted to Grade 5', author: 'Admin Elena', time: '3 minutes ago', icon: '🎓' },

@@ -17,7 +17,7 @@ import Documents from '../pages/Documents';
 import Settings from '../pages/Settings';
 import Approvals from '../pages/Approvals';
 
-export default function AdminLayout({ onLogout }) {
+export default function AdminLayout({ onLogout, students, setStudents, totalStudents }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -50,8 +50,8 @@ export default function AdminLayout({ onLogout }) {
         {/* Dynamic Nested Routes Content Window Element Screen Matrix Frame */}
         <main className="flex-1 overflow-x-hidden overflow-y-auto p-4 md:p-6">
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/users" element={<UserManagement />} />
+            <Route path="/dashboard" element={<Dashboard totalStudents={totalStudents}/>} />
+            <Route path="/users" element={<UserManagement students={students} setStudents={setStudents} />} />
             <Route path="/academic" element={<Academic />} />
             <Route path="/attendance" element={<Attendance />} />
             <Route path="/fees" element={<Fees />} />

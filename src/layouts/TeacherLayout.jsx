@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 // ==========================================
 // COMPONENT: TEACHER DASHBOARD VIEW (BIG TEXT EDITION)
 // ==========================================
-function TeacherDashboard() {
+function TeacherDashboard({ onLogout, students, totalStudents }) {
   const [showAIAssistant, setShowAIAssistant] = useState(false);
 
   return (
@@ -18,7 +18,7 @@ function TeacherDashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
           { title: 'Total Classes', val: '4', sub: 'This Semester', percentage: '0%', up: true, border: 'border-indigo-100', color: 'text-indigo-600' },
-          { title: 'Total Students', val: '15', sub: 'vs last semester', percentage: '5%', up: true, border: 'border-purple-100', color: 'text-purple-600' },
+          { title: 'Total Students', val: totalStudents.toString(), sub: 'vs last semester', percentage: '5%', up: true, border: 'border-purple-100', color: 'text-purple-600' },
           { title: 'Avg Attendance', val: '86%', sub: 'vs last month', percentage: '3%', up: true, border: 'border-fuchsia-100', color: 'text-fuchsia-600' },
           { title: 'Pending Tasks', val: '3', sub: 'vs Yesterday', percentage: '1%', up: false, border: 'border-rose-100', color: 'text-rose-600' }
         ].map((card, i) => (
@@ -1928,7 +1928,7 @@ function TeacherStudents() {
 // ==========================================
 // MAIN EXPORT MASTER LAYOUT FRAMEWORK
 // ==========================================
-export default function TeacherLayout({ onLogout }) {
+export default function TeacherLayout({ onLogout, students, totalStudents }) {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [mobileSidebar, setMobileSidebar] = useState(false);
 
@@ -1942,6 +1942,7 @@ export default function TeacherLayout({ onLogout }) {
   ];
 
   return (
+    
     <div className="min-h-screen bg-slate-50 flex font-sans antialiased text-slate-800">
       {/* Mobile Sidebar Cover Overlay */}
       {mobileSidebar && (
@@ -2045,7 +2046,7 @@ export default function TeacherLayout({ onLogout }) {
         </header>
 
         <main className="p-6 sm:p-8 bg-slate-50/50 flex-1 overflow-x-hidden">
-          {activeTab === 'dashboard' && <TeacherDashboard />}
+          {activeTab === 'dashboard' && <TeacherDashboard totalStudents={totalStudents}/>}
           {activeTab === 'classes' && <TeacherClasses />}
           {activeTab === 'students' && <TeacherStudents/>}
           {activeTab === 'attendance' && <TeacherAttendanceView/>}
